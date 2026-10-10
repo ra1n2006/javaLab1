@@ -98,7 +98,7 @@ public class Main {
                         break;
                     }
 
-                    Complex[][] multiplyResult = mx1.multiply(mx2.getMatrix());
+                    Complex[][] multiplyResult = mx1.multiply(mx2);
 
                     if (multiplyResult == null) {
                         System.out.println("Матрицы нельзя перемножить");

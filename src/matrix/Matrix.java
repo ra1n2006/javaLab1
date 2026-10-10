@@ -47,7 +47,8 @@ public class Matrix {
         }
         return res;
     }
-    public Complex[][] multiply(Complex[][] matrix1) {
+    public Complex[][] multiply(Matrix secondMatrix) {
+        Complex[][] matrix1 = secondMatrix.matrix;
         if (dimy != matrix1.length) {
             return null;
         }
@@ -126,7 +127,7 @@ public class Matrix {
                 inverse[i][j] = Complex.divide(transposed[i][j], det);
             }
         }
-        return multiply(inverse);
+        return multiply(new Matrix(inverse));
     }
 
     public Complex[][] transpose() {
