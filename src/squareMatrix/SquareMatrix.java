@@ -7,6 +7,10 @@ public class SquareMatrix extends Matrix {
         super(name, matrix);
     }
 
+    public SquareMatrix(Complex[][] matrix) {
+        super(matrix);
+    }
+
     public Complex determinant(int leftTop, boolean[] excluded) {
         Complex s = new Complex(0);
         if (leftTop == dimx - 1) {

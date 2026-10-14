@@ -98,14 +98,14 @@ public class Main {
                         break;
                     }
 
-                    Complex[][] multiplyResult = mx1.multiply(mx2);
+                    Matrix multiplyResult = mx1.multiply(mx2);
 
                     if (multiplyResult == null) {
                         System.out.println("Матрицы нельзя перемножить");
                         break;
                     }
 
-                    new Matrix(multiplyResult).printMatrix();
+                    multiplyResult.printMatrix();
                     break;
                 }
 
@@ -128,14 +128,14 @@ public class Main {
                         break;
                     }
 
-                    Complex[][] sumResult = mx1.sum(mx2);
+                    Matrix sumResult = mx1.sum(mx2);
 
                     if (sumResult == null) {
                         System.out.println("Матрицы нельзя сложить");
                         break;
                     }
 
-                    new Matrix(sumResult).printMatrix();
+                    sumResult.printMatrix();
                     break;
                 }
 
@@ -147,7 +147,7 @@ public class Main {
                     Matrix foundMatrix = matrixList.findMatrixByName(name);
 
                     if (foundMatrix instanceof SquareMatrix) {
-                        SquareMatrix mx = (SquareMatrix) foundMatrix;
+                        SquareMatrix mx = (SquareMatrix)foundMatrix;
                         System.out.println(mx.determinant(0, new boolean[mx.getDimx()]).convertComplexToNormal());
                     } else {
                         System.out.println("Определитель можно вычислить только у квадратной матрицы");
@@ -167,7 +167,7 @@ public class Main {
                         break;
                     }
 
-                    new Matrix(mx.transpose()).printMatrix();
+                    mx.transpose().printMatrix();
                     break;
                 }
 
@@ -186,14 +186,14 @@ public class Main {
                     Matrix mx2 = matrixList.findMatrixByName(name2);
 
                     if (mx1 != null && mx2 instanceof SquareMatrix) {
-                        Complex[][] divideResult = mx1.divide((SquareMatrix) mx2);
+                        Matrix divideResult = mx1.divide((SquareMatrix) mx2);
 
                         if (divideResult == null) {
                             System.out.println("Деление невозможно");
                             break;
                         }
 
-                        new Matrix(divideResult).printMatrix();
+                        divideResult.printMatrix();
                     } else {
                         System.out.println("Деление невозможно");
                     }

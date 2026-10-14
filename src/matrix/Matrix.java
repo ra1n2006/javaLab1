@@ -35,7 +35,7 @@ public class Matrix {
         return dimy;
     }
 
-    public Complex[][] sum(Matrix matrix1) {
+    public Matrix sum(Matrix matrix1) {
         if (this.dimx != matrix1.dimx || this.dimy != matrix1.dimy) {
             return null;
         }
@@ -45,9 +45,13 @@ public class Matrix {
                 res[i][j] = Complex.add(matrix1.matrix[i][j], matrix[i][j]);
             }
         }
-        return res;
+        if (dimx == dimy) {
+            return new SquareMatrix(res);
+        }
+        return new Matrix(res);
+
     }
-    public Complex[][] multiply(Matrix secondMatrix) {
+    public Matrix multiply(Matrix secondMatrix) {
         Complex[][] matrix1 = secondMatrix.matrix;
         if (dimy != matrix1.length) {
             return null;
@@ -66,11 +70,13 @@ public class Matrix {
                 }
             }
         }
-
-        return res;
+        if (dimx == matrix1[0].length) {
+            return new SquareMatrix(res);
+        }
+        return new Matrix(res);
     }
 
-    public Complex[][] divide(SquareMatrix squareMatrix) {
+    public Matrix divide(SquareMatrix squareMatrix) {
         Complex det = squareMatrix.determinant(
                 0,
                 new boolean[squareMatrix.getDimx()]
@@ -130,14 +136,14 @@ public class Matrix {
         return multiply(new Matrix(inverse));
     }
 
-    public Complex[][] transpose() {
+    public Matrix transpose() {
         Complex[][] transposed = new Complex[dimy][dimx];
         for (int i = 0; i < dimx; i++) {
             for (int j = 0; j < dimy; j++) {
                 transposed[j][i] = matrix[i][j];
             }
         }
-        return transposed;
+        return new Matrix(transposed);
     }
 
     public void printMatrix() {
